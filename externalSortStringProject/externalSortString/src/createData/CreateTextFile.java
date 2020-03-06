@@ -3,7 +3,7 @@ package createData;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.util.Random;
+import java.util.UUID;
 
 import projectHealper.Helper;
 
@@ -11,10 +11,9 @@ public class CreateTextFile extends Helper{
 	
 	private String inputFile = System.getProperty("user.dir")+"\\files\\inputFile.txt";
 	
-	public void createTextFileInMb(int[] dataArray) {
+	public void createTextFileInMb(int fileSize) {
 		createAFile(inputFile);
-		writeNumbersInToFile(inputFile,dataArray[0],dataArray[1],dataArray[2]);
-		
+		writeStringToFile(inputFile,fileSize);
 		
 	}
 	
@@ -31,22 +30,22 @@ public class CreateTextFile extends Helper{
 		}
 	}
 	
-	private void writeNumbersInToFile(String pathName,int lowerNumber,int higherNumber,int mbSize) {
-		
+	private void writeStringToFile(String pathName,int mbSize) {
 		try {
-			int eachMb = 400000;// 1-9 min size is mbSize
-			Random random = new Random();
-			BufferedWriter fw = new BufferedWriter(new FileWriter(pathName,true));
-			for(int i = 0 ; i <= mbSize*eachMb ;i++) {
-				fw.write(String.valueOf(random.nextInt(higherNumber-lowerNumber)+lowerNumber)+"\n");
+			File file = new File(pathName);
+			FileWriter fileWritter = new FileWriter(file,true);
+			BufferedWriter fw = new BufferedWriter(fileWritter);
+			while(file.length()<mbSize*1024*1024) {
+				fw.write(UUID.randomUUID().toString().replaceAll("[0-9-]", ""));
+				fw.newLine();
 			}
 			fw.close();
-			displayLog("File is created and Size in MB : "+new File(pathName).length()/(1024*1024));
+			displayLog("File is created and Size in MB : "+file.length()/(1024*1024));
 		} catch (Exception e) {
-			displayLog("ERROR IN METHOD writeNumbersInToFile "+ pathName + " error is : "+e.getMessage());
+			// TODO Auto-generated catch block
+			displayLog("ERROR IN METHOD writeStringToFile " + e.getMessage() );
 		}
-		
-		
 	}
+	
 
 }
