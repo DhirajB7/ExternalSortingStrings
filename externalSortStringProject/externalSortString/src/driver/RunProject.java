@@ -1,7 +1,9 @@
 package driver;
 
-import createData.CreateTextFile;
+import createTextFiles.CreateInputTextFile;
+import createTextFiles.CreateOutputTextFile;
 import userIntraction.DataFromUser;
+import worker.TextFilesCleaner;
 
 public class RunProject {
 	
@@ -17,19 +19,21 @@ public class RunProject {
 		
 	}
 	
-	private  void fileCreation() {
+	 void inputFileCreation() {
 		int data = getDataToCreateFile();
-		CreateTextFile createTextFile = new CreateTextFile();
+		CreateInputTextFile createTextFile = new CreateInputTextFile();
 		createTextFile.createTextFileInMb(data);
 	}
 	
-	public static void main(String[] args) {
-	
-		RunProject runner = new RunProject();
-		
-		
-		runner.fileCreation();
-		
+	  void outputFileCreation() {
+		CreateOutputTextFile createTextFile = new CreateOutputTextFile();
+		createTextFile.createSoretedFile();
 	}
+	  
+	void fliesClear() {
+		TextFilesCleaner textFilesCleaner = new TextFilesCleaner();
+		textFilesCleaner.clearFiles();
+	}
+		
 
 }

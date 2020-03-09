@@ -1,4 +1,7 @@
 externalSortStringProject/.metadata
 externalSortStringProject/externalSortString/bin/
 externalSortStringProject/externalSortString/.*
-externalSortStringProject/externalSortString/files/
+externalSortStringProject/externalSortString/input/
+externalSortStringProject/externalSortString/output/
+externalSortStringProject/externalSortString/multipleInputFilesFolder/
+externalSortStringProject/externalSortString/multipleSortedFilesFolder/

@@ -1,4 +1,4 @@
-package createData;
+package createTextFiles;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,9 +7,9 @@ import java.util.UUID;
 
 import projectHealper.Helper;
 
-public class CreateTextFile extends Helper{
+public class CreateInputTextFile extends Helper{
 	
-	private String inputFile = System.getProperty("user.dir")+"\\files\\inputFile.txt";
+	private String inputFile = System.getProperty("user.dir")+"\\input\\inputFile.txt";
 	
 	public void createTextFileInMb(int fileSize) {
 		createAFile(inputFile);
@@ -20,10 +20,10 @@ public class CreateTextFile extends Helper{
 	private void createAFile(String pathName) {
 		File file = new File(pathName);
 		try {
-			if(file.createNewFile()) {
-				displayLog("File Created and path is "+pathName);
-			}else {
-				System.out.println("File Already Created in path "+pathName);
+			if(!file.createNewFile()) {
+				file.delete();
+				createAFile(pathName);
+				displayLog("Input File Deleted , Created again and path is "+pathName);
 			}
 		} catch (Exception e) {
 			displayLog("ERROR IN METHOD createAFile "+ pathName + " error is : "+e.getMessage());
@@ -40,7 +40,7 @@ public class CreateTextFile extends Helper{
 				fw.newLine();
 			}
 			fw.close();
-			displayLog("File is created and Size in MB : "+file.length()/(1024*1024));
+			displayLog("Input File Size in MB : "+file.length()/(1024*1024));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			displayLog("ERROR IN METHOD writeStringToFile " + e.getMessage() );
