@@ -10,6 +10,10 @@ public class Driver{
 		RunProject driverProject = new RunProject();
 		driverProject.fliesClear();
 		driverProject.inputFileCreation();
+		driverProject.oneIputFileToMultipleInputFile();
+		driverProject.takeAFileSortPlaceInOtherFolder();
+		
+		
 		driverProject.outputFileCreation();
 	}
 }
