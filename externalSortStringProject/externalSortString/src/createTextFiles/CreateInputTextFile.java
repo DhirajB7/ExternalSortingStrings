@@ -5,18 +5,31 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.UUID;
 
+import constatnts.FileNames;
+import constatnts.FolderNames;
 import projectHealper.Helper;
 
 public class CreateInputTextFile extends Helper{
 	
-	private String inputFile = System.getProperty("user.dir")+"\\input\\inputFile.txt";
+	private String inputFile = System.getProperty("user.dir")+"\\"+FolderNames.input+"\\"+FileNames.inputFile+".txt";
 	
+	/**
+	 * Creats a file
+	 * Writes random strings to it
+	 * Input file is formed
+	 * @param fileSize
+	 */
 	public void createTextFileInMb(int fileSize) {
 		createAFile(inputFile);
 		writeStringToFile(inputFile,fileSize);
 		
 	}
 	
+	/**
+	 * Creats inputFile.txt.
+	 * If exist delete and recreate
+	 * @param pathName
+	 */
 	private void createAFile(String pathName) {
 		File file = new File(pathName);
 		try {
@@ -30,6 +43,11 @@ public class CreateInputTextFile extends Helper{
 		}
 	}
 	
+	/**
+	 * Write random string in file till mbSize file is generated
+	 * @param pathName
+	 * @param mbSize
+	 */
 	private void writeStringToFile(String pathName,int mbSize) {
 		try {
 			File file = new File(pathName);
