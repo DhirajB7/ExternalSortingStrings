@@ -3,6 +3,8 @@ package driver;
 import createTextFiles.CreateInputTextFile;
 import createTextFiles.CreateOutputTextFile;
 import userIntraction.DataFromUser;
+import worker.FileSplitDecider;
+import worker.TakeFilesSortStore;
 import worker.TextFilesCleaner;
 
 public class RunProject {
@@ -51,5 +53,19 @@ public class RunProject {
 		textFilesCleaner.clearFiles();
 	}
 		
-
+	/**
+	 * One Big file to many Small files in a folder
+	 */
+	void oneIputFileToMultipleInputFile() {
+		FileSplitDecider fsd = new FileSplitDecider();
+		fsd.makeFilesFromInputFile();
+	}
+	
+	/**
+	 * 
+	 */
+	void takeAFileSortPlaceInOtherFolder() {
+		TakeFilesSortStore tss = new TakeFilesSortStore();
+		tss.takeAllFileAndSort();
+	}
 }
