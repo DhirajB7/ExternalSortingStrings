@@ -40,6 +40,7 @@ public class FileSplitDecider extends Helper{
 		try {
 			int sizeOfEachFile = getSizeOfEachFileInMb();
 			
+			
 			CreateTrasitionTextFile fileCreate = new CreateTrasitionTextFile();
 			
 			int i =0;
@@ -62,9 +63,13 @@ public class FileSplitDecider extends Helper{
 				bw.newLine();
 				line = br.readLine();
 			}
-			bw.close();	
+			bw.close();
 			br.close();
-			displayLog("One input File to Multiple Input file operation completed");
+			System.out.println("");
+			displayLog("=================================================================================================");
+			displayLog("One input File to Multiple Input file operation completed and each file is "+sizeOfEachFile+" MB.");
+			displayLog("==================================================================================================");
+			System.out.println("");
 		} catch (Exception e) {
 			displayLog("[ERROR] "+ e.getLocalizedMessage());
 		}

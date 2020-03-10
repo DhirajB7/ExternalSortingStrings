@@ -51,7 +51,7 @@ public class CreateInputTextFile extends Helper{
 	private void writeStringToFile(String pathName,int mbSize) {
 		try {
 			File file = new File(pathName);
-			FileWriter fileWritter = new FileWriter(file,true);
+			FileWriter fileWritter = new FileWriter(file);
 			BufferedWriter fw = new BufferedWriter(fileWritter);
 			while(file.length()<mbSize*1024*1024) {
 				fw.write(UUID.randomUUID().toString().replaceAll("[0-9-]", ""));
