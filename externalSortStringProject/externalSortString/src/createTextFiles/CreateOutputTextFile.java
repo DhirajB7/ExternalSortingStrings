@@ -1,6 +1,9 @@
 package createTextFiles;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import constatnts.FileNames;
 import constatnts.FolderNames;
@@ -10,6 +13,10 @@ public class CreateOutputTextFile extends Helper {
 
 private String outputFile = System.getProperty("user.dir")+"\\"+FolderNames.output+"\\"+FileNames.outputSortedFile+".txt";
 	
+/**
+ * Create a output file
+ * @param pathName
+ */
 	private void createAnOutputFile(String pathName) {
 		File file = new File(pathName);
 		try {
@@ -23,6 +30,21 @@ private String outputFile = System.getProperty("user.dir")+"\\"+FolderNames.outp
 		}
 	}
 	
+	public void writeAValueInOutputFile(String value) {
+		try {
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File(outputFile)));
+			br.write(value);
+			br.newLine();
+			br.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Method for runner
+	 */
 	public void createSoretedFile() {
 		createAnOutputFile(outputFile);
 	}

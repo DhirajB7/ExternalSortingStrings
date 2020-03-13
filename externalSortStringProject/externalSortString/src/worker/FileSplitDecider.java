@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import constatnts.FileNames;
 import constatnts.FolderNames;
+import constatnts.SplitDeciderNumber;
 import projectHealper.Helper;
 
 public class FileSplitDecider extends Helper{
@@ -22,14 +23,14 @@ public class FileSplitDecider extends Helper{
 		
 		 long inputFileSize = new File(inputFile).length()/(1024*1024);
 		 if(inputFileSize <= 50) {
-			 return 1;
+			 return Integer.valueOf((SplitDeciderNumber.veryLow_1).toString().split("_")[1]);
 		 }
 		 else if(inputFileSize > 50 && inputFileSize <= 100) {
-			 return 10;
+			 return Integer.valueOf((SplitDeciderNumber.low_10).toString().split("_")[1]);
 		 }else if(inputFileSize > 100 && inputFileSize <= 1000) {
-			 return 100;
+			 return Integer.valueOf((SplitDeciderNumber.medium_100).toString().split("_")[1]);
 		 }else {
-			 return 500;
+			 return Integer.valueOf((SplitDeciderNumber.high_500).toString().split("_")[1]);
 		 }
 	}
 	
