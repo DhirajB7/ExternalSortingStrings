@@ -2,6 +2,7 @@ package driver;
 
 import createTextFiles.CreateInputTextFile;
 import createTextFiles.CreateOutputTextFile;
+import sortMaster.BufferedReadersArrayListFromSortedForMerge;
 import userIntraction.DataFromUser;
 import worker.FileSplitDecider;
 import worker.TakeFilesSortStore;
@@ -35,15 +36,6 @@ public class RunProject {
 		CreateInputTextFile createTextFile = new CreateInputTextFile();
 		createTextFile.createTextFileInMb(data);
 	}
-	
-	 /**
-	  * Create Output file
-	  * TO DO : Write Result
-	  */
-	  void outputFileCreation() {
-		CreateOutputTextFile createTextFile = new CreateOutputTextFile();
-		createTextFile.createSoretedFile();
-	}
 	  
 	/**
 	 * Clears all file in all folder
@@ -62,10 +54,24 @@ public class RunProject {
 	}
 	
 	/**
-	 * 
+	 * Small files to Sorted small files
 	 */
 	void takeAFileSortPlaceInOtherFolder() {
 		TakeFilesSortStore tss = new TakeFilesSortStore();
 		tss.takeAllFileAndSort();
 	}
+	
+	 /**
+	  * Create Output file
+	  * loads Data for first time
+	  */
+	  void outputFileCreation() {
+		CreateOutputTextFile createTextFile = new CreateOutputTextFile();
+		createTextFile.createSoretedFile();
+	  }
+	  
+	 void bufferedReaderToArrayListsCompareAndwrite() {
+		 BufferedReadersArrayListFromSortedForMerge bufferedReadersArrayListFromSortedForMerge = new BufferedReadersArrayListFromSortedForMerge();
+		 bufferedReadersArrayListFromSortedForMerge.compareAndSendOutput();
+	 }
 }

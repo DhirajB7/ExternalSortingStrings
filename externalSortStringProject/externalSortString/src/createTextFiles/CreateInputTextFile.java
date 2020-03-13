@@ -1,7 +1,9 @@
 package createTextFiles;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.UUID;
 
@@ -63,6 +65,22 @@ public class CreateInputTextFile extends Helper{
 			// TODO Auto-generated catch block
 			displayLog("ERROR IN METHOD writeStringToFile " + e.getMessage() );
 		}
+	}
+	
+	/**
+	 * Get number of lines in input file
+	 * @return
+	 */
+	public long getNumberOfLinesInFile() {
+		long value = 0;
+		try {
+		BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)));
+		value = br.lines().count();
+		br.close();
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return value;
 	}
 	
 

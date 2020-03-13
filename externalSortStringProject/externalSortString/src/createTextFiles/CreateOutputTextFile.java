@@ -32,7 +32,7 @@ private String outputFile = System.getProperty("user.dir")+"\\"+FolderNames.outp
 	
 	public void writeAValueInOutputFile(String value) {
 		try {
-			BufferedWriter br = new BufferedWriter(new FileWriter(new File(outputFile)));
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File(outputFile),true));
 			br.write(value);
 			br.newLine();
 			br.close();

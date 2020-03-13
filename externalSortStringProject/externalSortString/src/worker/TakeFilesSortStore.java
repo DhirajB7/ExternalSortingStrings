@@ -72,7 +72,7 @@ public class TakeFilesSortStore extends Helper{
 			takeOneFileSortPlace(fileFromSource);
 		}
 		
-		displayLog("All Files are sorted");
+		displayLog("All Files are sorted\n");
 	}
 	
 	

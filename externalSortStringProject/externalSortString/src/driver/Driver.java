@@ -1,6 +1,8 @@
 package driver;
 
-public class Driver{
+import projectHealper.Helper;
+
+public class Driver extends Helper{
 
 	/**
 	 * MAIN METHOD - EXECUTE HERE
@@ -12,8 +14,10 @@ public class Driver{
 		driverProject.inputFileCreation();
 		driverProject.oneIputFileToMultipleInputFile();
 		driverProject.takeAFileSortPlaceInOtherFolder();
-		
-		
 		driverProject.outputFileCreation();
+		driverProject.bufferedReaderToArrayListsCompareAndwrite();
+		
+		displayLog("EXECUION COMPLETED");
+		
 	}
 }
