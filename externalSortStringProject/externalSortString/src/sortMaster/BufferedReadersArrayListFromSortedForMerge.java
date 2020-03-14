@@ -17,7 +17,7 @@ public class BufferedReadersArrayListFromSortedForMerge extends Helper {
 	private String multipleSortedInputFolder = System.getProperty("user.dir") + "\\"
 			+ FolderNames.multipleSortedFilesFolder;
 
-	int loadingNumber = Integer.valueOf(LimitSetting.limit_70000.toString().split("_")[1]);
+	int loadingNumber = Integer.valueOf(LimitSetting.limit_10000.toString().split("_")[1]);
 
 	int sortedFilesNumber = new File(multipleSortedInputFolder).listFiles().length;
 
