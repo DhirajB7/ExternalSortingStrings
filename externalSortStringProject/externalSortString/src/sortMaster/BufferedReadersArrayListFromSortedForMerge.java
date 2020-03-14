@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 
 import constatnts.FolderNames;
+import constatnts.LimitSetting;
 import createTextFiles.CreateInputTextFile;
 import createTextFiles.CreateOutputTextFile;
 import projectHealper.Helper;
@@ -16,7 +17,7 @@ public class BufferedReadersArrayListFromSortedForMerge extends Helper {
 	private String multipleSortedInputFolder = System.getProperty("user.dir") + "\\"
 			+ FolderNames.multipleSortedFilesFolder;
 
-	int loadingNumber = 3;
+	int loadingNumber = Integer.valueOf(LimitSetting.limit_70000.toString().split("_")[1]);
 
 	int sortedFilesNumber = new File(multipleSortedInputFolder).listFiles().length;
 
@@ -64,18 +65,6 @@ public class BufferedReadersArrayListFromSortedForMerge extends Helper {
 	}
 
 	/**
-	 * Prepares ArrayListOfIndex
-	 */
-	private void makeIndexArrayList() {
-		displayLog("Method name makeIndexArrayList");
-		for (File file : new File(multipleSortedInputFolder).listFiles()) {
-			alIndex.putIfAbsent(file.getName(), 0);
-			displayLog("added counter for " + file.getName());
-		}
-		System.out.println("");
-	}
-
-	/**
 	 * Lad all data sorted file -->bufferReader-->ArrayList in LinkedHashMap
 	 * [loadingNumber data will be loaded]
 	 * 
@@ -83,7 +72,6 @@ public class BufferedReadersArrayListFromSortedForMerge extends Helper {
 	 */
 	private LinkedHashMap<String, ArrayList<String>> loadAllDataFirstTime() {
 		prepareDataStructure();
-		makeIndexArrayList();
 		try {
 			int i = 0;
 			for (ArrayList<String> al : aal.values()) {
@@ -122,7 +110,7 @@ public class BufferedReadersArrayListFromSortedForMerge extends Helper {
 
 			for (Entry<String, ArrayList<String>> entryInMap : aal.entrySet()) {
 
-				if (loadingNumber - 1 == alIndex.get(entryInMap.getKey())) {
+				if (entryInMap.getValue().size() == 0) {
 					ArrayList<String> al = loadOneArrayList(entryInMap.getValue(),
 							Integer.valueOf(entryInMap.getKey().replace(".txt", "").substring(12)));
 					entryInMap.setValue(al);
@@ -131,22 +119,20 @@ public class BufferedReadersArrayListFromSortedForMerge extends Helper {
 				String key = entryInMap.getKey();
 				ArrayList<String> valueArrayList = entryInMap.getValue();
 
-				System.out.println(key+" : "+alIndex.get(key));
-				System.out.println(key+" : "+valueArrayList.get(alIndex.get(key)));
-				System.out.println("=======================");
-				
-					if (valueArrayList.get(alIndex.get(key)).compareTo(smallestValue) < 0) {
+				if (valueArrayList.size() > 0) {
+					if (valueArrayList.get(0).compareTo(smallestValue) < 0) {
 						smallestFileName = key;
-						smallestValue = valueArrayList.get(alIndex.get(key));
+						smallestValue = valueArrayList.get(0);
 					}
-				
+				}
+
 			}
 
 			String value = smallestValue;
 
 			createOutputTextFile.writeAValueInOutputFile(value);
 
-			alIndex.replace(smallestFileName, alIndex.get(smallestFileName), alIndex.get(smallestFileName) + 1);
+			aal.get(smallestFileName).remove(0);
 
 			smallestValue = "zzzzzzzzzzzzzzzzzzzzzzzzzzz";
 
