@@ -1,5 +1,5 @@
 package constatnts;
 
 public enum LimitSetting {
-	limit_70000;
+	limit_10000;
 }
