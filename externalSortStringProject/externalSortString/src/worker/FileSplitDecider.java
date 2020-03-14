@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import constatnts.FileNames;
 import constatnts.FolderNames;
+import constatnts.SplitDeciderNumber;
 import projectHealper.Helper;
 
 public class FileSplitDecider extends Helper{
@@ -22,14 +23,14 @@ public class FileSplitDecider extends Helper{
 		
 		 long inputFileSize = new File(inputFile).length()/(1024*1024);
 		 if(inputFileSize <= 50) {
-			 return 1;
+			 return Integer.valueOf((SplitDeciderNumber.veryLow_1).toString().split("_")[1]);
 		 }
 		 else if(inputFileSize > 50 && inputFileSize <= 100) {
-			 return 10;
+			 return Integer.valueOf((SplitDeciderNumber.low_10).toString().split("_")[1]);
 		 }else if(inputFileSize > 100 && inputFileSize <= 1000) {
-			 return 100;
+			 return Integer.valueOf((SplitDeciderNumber.medium_100).toString().split("_")[1]);
 		 }else {
-			 return 500;
+			 return Integer.valueOf((SplitDeciderNumber.high_500).toString().split("_")[1]);
 		 }
 	}
 	
@@ -39,6 +40,7 @@ public class FileSplitDecider extends Helper{
 	public void makeFilesFromInputFile() {
 		try {
 			int sizeOfEachFile = getSizeOfEachFileInMb();
+			
 			
 			CreateTrasitionTextFile fileCreate = new CreateTrasitionTextFile();
 			
@@ -62,9 +64,13 @@ public class FileSplitDecider extends Helper{
 				bw.newLine();
 				line = br.readLine();
 			}
-			bw.close();	
+			bw.close();
 			br.close();
-			displayLog("One input File to Multiple Input file operation completed");
+			System.out.println("");
+			displayLog("=================================================================================================");
+			displayLog("One input File to Multiple Input file operation completed and each file is "+sizeOfEachFile+" MB.");
+			displayLog("==================================================================================================");
+			System.out.println("");
 		} catch (Exception e) {
 			displayLog("[ERROR] "+ e.getLocalizedMessage());
 		}
